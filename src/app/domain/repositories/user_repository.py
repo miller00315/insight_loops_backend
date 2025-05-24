@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import List, Optional
+from typing import Optional
 from uuid import UUID
 
 from app.domain.entities.user import User
