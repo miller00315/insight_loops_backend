@@ -59,3 +59,9 @@ class UserService:
             return user
         except UserNotFoundException:
             return None
+
+    async def delete_user(self, user_id: int) -> bool:
+        user = await self.get_user_by_id(
+            user_id
+        )  # This will raise if user doesn't exist
+        return await self.user_repository.delete(user_id)
