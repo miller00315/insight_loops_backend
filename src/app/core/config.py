@@ -24,3 +24,6 @@ class Settings(BaseSettings):
     DEBUG: bool = Field(default=False, description="Debug mode")
     ENVIRONMENT: str = Field(default="development", description="Environment")
     API_V1_PREFIX: str = Field(default="/api/v1", description="API v1 prefix")
+
+
+settings = Settings()

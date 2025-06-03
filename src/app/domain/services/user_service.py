@@ -1,8 +1,7 @@
 from typing import Optional
 from passlib.context import CryptContext
 
-from app.core.exceptions import UserAlreadyExistsException, \
-      UserNotFoundException
+from app.core.exceptions import UserAlreadyExistsException, UserNotFoundException
 from app.domain.entities.user import User
 from app.domain.repositories.user_repository import UserRepository
 
@@ -18,8 +17,7 @@ class UserService:
     def _hash_password(self, password: str) -> str:
         return self.pwd_context.hash(password)
 
-    def _verify_password(self,
-                         plain_password: str, hashed_password: str) -> bool:
+    def _verify_password(self, plain_password: str, hashed_password: str) -> bool:
         return self.pwd_context.verify(plain_password, hashed_password)
 
     async def create_user(self, email: str, password: str) -> User:
@@ -53,8 +51,7 @@ class UserService:
             raise UserNotFoundException(f"User with id {user_id} not found")
         return user
 
-    async def authenticate_user(
-            self, email: str, password: str) -> Optional[User]:
+    async def authenticate_user(self, email: str, password: str) -> Optional[User]:
         try:
             user = await self.get_user_by_email(email)
             if not self._verify_password(password, user.hashed_password):
